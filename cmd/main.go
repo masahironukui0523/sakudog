@@ -117,25 +117,19 @@ func PostMetrics(response Response) {
 			},
 			Tags: []string{
 				"prod-pfm-aws:",
-				"project:",
-				"test:true",
-				"test_revision:v1",
 			},
 		}
 
 		send := datadog.Metric{
 			Metric: datadog.String(nameOfSendMetric),
 			Type:   datadog.String("gauge"),
-			Unit:   datadog.String("credit"),
+			Host:   datadog.String("prod-pfm-aws"),
 			Points: []datadog.DataPoint{
 				// TODO:-convert custom type(val) to float64
 				{ConvertStingToFloat64(key), ConvertInt64ToFloat64(val.SendBytesPerSec)},
 			},
 			Tags: []string{
-				"account:",
-				"project:",
-				"test:true",
-				"test_revision:v1",
+				"prod-pfm-aws:",
 			},
 		}
 
@@ -171,7 +165,7 @@ func ConvertStingToFloat64(v string) *float64 {
 	t1, err := time.Parse(time.RFC3339, s)
 
 	if err != nil {
-		log.Fatalf("Failed to convert.: %v", err)
+		log.Fatalf("Failed to convert: %v", err)
 	}
 
 	// time to float64
