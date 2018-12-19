@@ -43,7 +43,6 @@ const (
 4.  メトリクスを設定する
 ```go
     receive := datadog.Metric{
-			// メトリクス名
 			Metric: datadog.String("sakudog.dx.receive_bytes_per_s"),
 			Type:   datadog.String("gauge"),
 			Points: []datadog.DataPoint{
