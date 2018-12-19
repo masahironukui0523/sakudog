@@ -80,7 +80,7 @@ Datadogのサイドメニューから、Metrics→Explorerを選んでGraphの�
 あとはこのスクリプトが5分毎に定期実行される環境を作ってあげればDatadogで常に最新のメトリクスを監視できます。
 
 
-AWSのLambdaとCloudWatchを使えば無料の枠で定期実行できるのでオススメです。
+AWSのLambdaとCloudWatchを使えば無料の枠で5分間隔の定期実行ができるのでオススメです。
 
 
 ## ライセンス
