@@ -8,7 +8,6 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/aws/aws-lambda-go/lambda"
 	datadog "gopkg.in/zorkian/go-datadog-api.v2"
 )
 
@@ -39,12 +38,6 @@ const (
 )
 
 func main() {
-
-	lambda.Start(hundler)
-
-}
-
-func hundler() {
 
 	response := GetMetrics()
 
