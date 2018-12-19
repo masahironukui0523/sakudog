@@ -40,7 +40,7 @@ const (
 
 ドキュメント参照: https://developer.sakura.ad.jp/cloud/api/1.1/
 
-5.  メトリクスを設定する
+4.  メトリクスを設定する
 ```go
     receive := datadog.Metric{
 			// メトリクス名
