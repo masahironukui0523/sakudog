@@ -12,10 +12,10 @@ import (
 )
 
 type Response struct {
-	Data map[string]TempMetric `json:"Data"`
+	Data map[string]MetricData `json:"Data"`
 }
 
-type TempMetric struct {
+type MetricData struct {
 	ReceiveBytesPerSec int64 `json:"receiveBytesPerSec"`
 	SendBytesPerSec    int64 `json:"sendBytesPerSec"`
 }
