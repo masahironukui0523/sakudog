@@ -19,6 +19,8 @@ go get gopkg.in/zorkian/go-datadog-api.v2
 ```
 
 3.  それぞれ自分のクレデンシャルに置き換える
+
+**cmdディレクトリ**に移動して、**main.go**に定義されているクレデンシャルの部分を自分のものと置き換えてください。
 ```go
 // Sakura cloud
 const (
@@ -67,11 +69,7 @@ const (
 ドキュメント参照: https://godoc.org/gopkg.in/zorkian/go-datadog-api.v2#Metric
 
 ## 使い方
-1. cmdディレクトリに移動
-```
-cd cmd
-```
-2. スクリプトを実行
+1. スクリプトを実行
 ```
 go run main.go
 ```
