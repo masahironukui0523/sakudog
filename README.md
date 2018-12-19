@@ -79,7 +79,7 @@ This software is released under the MIT License, see LICENSE.
 
 
 ## Authors
-@masahironukui0523(https://github.com/moneyforward/sakudog)
+@masahironukui0523(https://github.com/masahironukui0523)
 
 
 ## References
