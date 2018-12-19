@@ -85,6 +85,7 @@ Datadogのサイドメニューから、Metrics→Explorerを選んでGraphの�
 
 AWSのLambdaとCloudWatchを使えば無料の枠で定期実行できるのでオススメです。
 
+
 ## ライセンス
 This software is released under the MIT License, see LICENSE.
 
