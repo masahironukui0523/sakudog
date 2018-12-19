@@ -1,12 +1,11 @@
 # Sakudog in Golang
 さくらのクラウドからAWSへのトラフィックをメトリクスとしてDatadogに送信しDatadog上で監視できるようにするスクリプトをGolangで書いたものです。
 
-## Dependency
+## 使用するもの
 * Golang
 * Datadog
-* Lambda(定期実行できるものであれば何でもいい) 
 
-## Setup
+## セットアップ
 1.  リポジトリをclone
 ```
 cd $GOPATH/src/
@@ -68,19 +67,28 @@ const (
 
 ドキュメント参照: https://godoc.org/gopkg.in/zorkian/go-datadog-api.v2#Metric
 
-## Usage
+## 使い方
+1. cmdディレクトリに移動
+```
+cd cmd
+```
+2. スクリプトを実行
+```
+go run main.go
+```
 
-さくらのクラウドのAPIから得られるメトリクスは5分間隔なので、Lambdaにmain.goを5分間おきにスクリプトを実行するようにします。
+Datadogのサイドメニューから、Metrics→Explorerを選んでGraphの覧にメトリクス名を入力して表示されれば成功です。
 
 
+あとはこのスクリプトが5分毎に定期実行される環境を作ってあげればDatadogで常に最新のメトリクスを監視できます。
 
-## Licence
+
+AWSのLambdaとCloudWatchを使えば無料の枠で定期実行できるのでオススメです。
+
+
+## ライセンス
 This software is released under the MIT License, see LICENSE.
 
 
-## Authors
-@masahironukui0523(https://github.com/masahironukui0523)
-
-
-## References
+## 参照
 https://github.com/zorkian/go-datadog-api

@@ -8,7 +8,6 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/aws/aws-lambda-go/lambda"
 	datadog "gopkg.in/zorkian/go-datadog-api.v2"
 )
 
@@ -24,30 +23,21 @@ type TempMetric struct {
 // Sakura cloud
 const (
 	// UserID
-	token = "token"
+	token = "YOUR_API_KEY"
 	// Password
-	secret = "secret"
+	secret = "YOUR_SECRET_TOKEN"
 	// BaseURL
-	url = "url"
-	// Metric name
-	nameOfRecieveMetric = "sakudog.dx.receive_bytes_per_s"
-	nameOfSendMetric    = "sakudog.dx.send_bytes_per_s"
+	url = "https://secure.sakura.ad.jp/cloud/zone/${ZONE_NAME}/api/cloud/1.1//commonserviceitem/${COMMONSERVICEITEMID}/activity/awsdirectconnect/monitor"
 )
 
 // Datadog
 const (
-	apiKey   = "apiKey"
-	appKey   = "appKey"
-	screenId = 0
+	apiKey   = "YOUR_API_KEY"
+	appKey   = "YOUR_APP_KEY"
+	screenId = "YOUR_SCREEN_ID"
 )
 
 func main() {
-
-	lambda.Start(hundler)
-
-}
-
-func hundler() {
 
 	response := GetMetrics()
 
@@ -108,28 +98,21 @@ func PostMetrics(response Response) {
 	for key, val := range response.Data {
 
 		receive := datadog.Metric{
-			Metric: datadog.String(nameOfRecieveMetric),
+			// メトリクス名
+			Metric: datadog.String("sakudog.dx.receive_bytes_per_s"),
 			Type:   datadog.String("gauge"),
-			Host:   datadog.String("prod-pfm-aws"),
 			Points: []datadog.DataPoint{
 				// TODO:-convert custom type(val) to float64
 				{ConvertStingToFloat64(key), ConvertInt64ToFloat64(val.ReceiveBytesPerSec)},
 			},
-			Tags: []string{
-				"prod-pfm-aws:",
-			},
 		}
 
 		send := datadog.Metric{
-			Metric: datadog.String(nameOfSendMetric),
+			Metric: datadog.String("sakudog.dx.send_bytes_per_s"),
 			Type:   datadog.String("gauge"),
-			Host:   datadog.String("prod-pfm-aws"),
 			Points: []datadog.DataPoint{
 				// TODO:-convert custom type(val) to float64
 				{ConvertStingToFloat64(key), ConvertInt64ToFloat64(val.SendBytesPerSec)},
-			},
-			Tags: []string{
-				"prod-pfm-aws:",
 			},
 		}
 
@@ -142,22 +125,19 @@ func PostMetrics(response Response) {
 		log.Fatalf("Failed to post metrics to datadog: %v", err)
 	}
 
-	fmt.Println("receiveBytesPerSecの送信に成功！")
+	fmt.Println("Post receive metrics to datadog！")
 
 	if err := client.PostMetrics(sendMetrics); err != nil {
 		log.Fatalf("Failed to post metrics to datadog: %v", err)
 	}
 
-	fmt.Println("sendBytesPerSecの送信に成功！")
+	fmt.Println("Post send metrics to datadog！")
 
 }
 
 // String to float64
 func ConvertStingToFloat64(v string) *float64 {
 
-	// Can not parse in this way.
-	// layout := "2018-12-12T23:20:00+0900"
-	// FIX:- find other way to perse.
 	length := len(v)
 	s := v[0:length-2] + ":" + v[length-2:length]
 
