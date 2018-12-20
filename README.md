@@ -8,9 +8,7 @@
 ## セットアップ
 1.  リポジトリをclone
 ```
-cd $GOPATH/src/
 git clone git@github.com:moneyforward/sakudog.git
-cd sakudog
 ```
 
 2.  go-datadog-apiをインストール
@@ -20,7 +18,7 @@ go get gopkg.in/zorkian/go-datadog-api.v2
 
 3.  それぞれ自分のクレデンシャルに置き換える
 
-**cmdディレクトリ**に移動して、**main.go**に定義されているクレデンシャルの部分を自分のものと置き換えてください。
+**main.go**に定義されているクレデンシャルの部分を自分のものと置き換えてください。
 ```go
 // Sakura cloud
 const (
@@ -69,10 +67,14 @@ const (
 ドキュメント参照: https://godoc.org/gopkg.in/zorkian/go-datadog-api.v2#Metric
 
 ## 使い方
-1. スクリプトを実行
+
+cmdディレクトリに移動して、
+
 ```
 go run main.go
 ```
+
+でスクリプトを実行。
 
 Datadogのサイドメニューから、Metrics→Explorerを選んでGraphの覧にメトリクス名を入力して表示されれば成功です。
 
