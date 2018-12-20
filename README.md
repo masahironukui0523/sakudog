@@ -6,19 +6,19 @@
 * Datadog
 
 ## セットアップ
-1.  リポジトリをclone
+### 1.  リポジトリをclone
 ```
 git clone git@github.com:moneyforward/sakudog.git
 ```
 
-2.  go-datadog-apiをインストール
+### 2.  go-datadog-apiをインストール
 ```
 go get gopkg.in/zorkian/go-datadog-api.v2
 ```
 
 ## 使い方
 
-1.  それぞれ自分のクレデンシャルに置き換える
+### 1.  それぞれ自分のクレデンシャルに置き換える
 
 **main.go**に定義されているクレデンシャルの部分を自分のものと置き換えてください。
 ```go
@@ -42,7 +42,7 @@ const (
 
 ドキュメント参照: https://developer.sakura.ad.jp/cloud/api/1.1/
 
-2.  メトリクスを設定する
+### 2.  メトリクスを設定する
 ```go
     receive := datadog.Metric{
 			Metric: datadog.String("sakudog.dx.receive_bytes_per_s"),
@@ -68,7 +68,7 @@ const (
 
 ドキュメント参照: https://godoc.org/gopkg.in/zorkian/go-datadog-api.v2#Metric
 
-3. スクリプトを実行
+### 3. スクリプトを実行
 
 cmdディレクトリに移動して、
 
